@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <_name>Sólidos platónicos</_name>
+    <id>plhurtado.solidosplatonicos</id>
+    <dependency type="executable" location="extensions">solidosplatonicos.py</dependency>
+    <dependency type="executable" location="extensions">inkex.py</dependency>
+    <dependency type="executable" location="extensions">simplestyle.py</dependency>
+    <param name="tab" type="notebook">
+        <page name="options" _gui-text="Options">
+            <param name="unidad" type="enum" value ="mm" _gui-text="Unidad de medida:">
+                <_tiem value="pt">pt</_item>
+                <_item value="cm">cm</_item>
+                <_item value="m">m</_item>
+                <_item value="in">in</_item>
+                <_item value="mm">mm</_item>
+                <_item value="pc">pc</_item>
+                <_item value="px">px</_item>
+                <_item value="ft">ft</_item>
+            </param>
+            <param name="figura" type="enum" _gui-text="Figura:">
+                <_item value="Tetraedro">Tetraedro</_item>
+                <_item value="Hexaedro">Hexaedro</_item>
+                <_item value="Octaedro">Octaedro</_item>
+                <_item value="Dodecaedro">Dodecaedro</_item>
+                <_item value="Icosaedro">Icosaedro</_item>
+            </param>
+            <param name="longitud" type="float" min="0.1" max="1000" _gui-text="Longitud de un lado">10</param>
+            <param name="pestana" type="float" min="0.1" max="1000" _gui-text="Anchura de las pestañas">1</param>
+            <param name="grosor" type="float" min="0.1" max="1000" _gui-text="Grosor del material">1</param>
+            <param name="numPestana" type="int" min="0" max="3" _gui-text="Numero de pestañas por lado">2</param>
+            <param name="separacion" type="int" min="1" max="500" _gui-text="Separación entre las piezas">10</param>
+            <param name="unico" type="boolean" _gui-text="Una única pieza">0</param>
+            <param name="distribucion" type="enum" value="rectangular" _gui-text="Distribución de las figuras">
+                <_item value="lineal">Lineal</_item>
+                <_item value="rectangular">Rectangular</item>
+            </param>
+            <param name="isCalado" type="boolean" _gui-text="Piezas caladas">0</param>
+            <param name="caladoValor" type="float" min="0.1" max="1000" _gui-text="Anchura de la pared interna">0</param>
+            <param name="grupo" type="boolean" _gui-text="Grupo contenedor del sólido">0</param>
+         </page>
+         <page name="style" _gui-text="Style">
+
+            <param name="s_r" type="int" min="0" max="255" _gui-text="Color de borde, Red:">255</param>
+            <param name="s_g" type="int" min="0" max="255" _gui-text="Color de borde, Green:">0</param>
+            <param name="s_b" type="int" min="0" max="255" _gui-text="Color de borde, Blue:">0</param>
+            <param name="th" type="float" min="0.1" max="100" _gui-text="Stroke width (px):">4</param>
+        </page>
+        <page name="help" _gui-text="Help">
+            <param name="helpOptions" type="description">Extensión encargada de generar sólidos platónicos.
+Los parámetros que podemos modificar son:
+-Unidad de medida: Unidad en la que se van a dar las medidas
+-Figura: Sólido platónico que se va a generar
+-Longitud: Tamaño de cada uno de los lados del sólido
+-Anchura de las pestañas: Distancia que medirán todas las pestañas
+-Grosor del material: Indicará como de largas serán las pestañas
+-Numero de pestañas por lado: Podemos escoger desde 0 pestañas por lado hasta 3
+-Separación entre las piezas: Separación entre las piezas generadas
+-Una única pieza: Generará una única pieza del sólido indicado
+-Distribución de las figuras: Posición de las piezas en el tablero. Podrá ser lineal o rectangular
+-Piezas caladas: Se generarán piezas "huecas"
+-Anchura de la pared interna: Distancia entre un lado y el corte del calado interno
+-Grupo contenedor del sólido: Se generará un grupo de donde colgarán las piezas generadas
+            </param>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu _name="TFG"/>
+        </effects-menu>
+    </effect>
+    <script>
+        <command reldir="extensions" interpreter="python">solidosplatonicos.py</command>
+    </script>
+</inkscape-extension>
+
