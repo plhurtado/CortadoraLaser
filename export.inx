@@ -1,0 +1,44 @@
+<!--Pedro Hurtado González
+
+This file is part of plhurtado/lassercut.
+
+plhurtado/lassercut is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+plhurtado/lassercut is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>. -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <_name>Exportar clases a eps</_name>
+    <id>plhurtado.export</id>
+    <dependency type="executable" location="extensions">inkex.py</dependency>
+    <dependency type="executable" location="extensions">simplestyle.py</dependency>
+    
+    <param name="tab" type="notebook">
+        <page name="options" _gui-text="Options">
+            <param name="path" type="string" _gui-text="Ruta donde se crearán los fichero EPS: ">/tmp/</param>
+            <param name="opacity" type="boolean" _gui-text="Configurar todas las opacidades de los bordes a 100%">0</param>
+            <param name="fill" type="boolean" _gui-text="Eliminar el relleno de las piezas">0</param>
+            <param name="text" type="boolean"  _gui-text="Convertir los elementos de texto a paths">0</param>
+        </page>
+    </param>
+    
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu _name="TFG"/>
+        </effects-menu>
+    </effect>
+    <script>
+        <command reldir="extensions" interpreter="python">export.py</command>
+    </script>
+</inkscape-extension>
+

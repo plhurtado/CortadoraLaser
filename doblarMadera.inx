@@ -1,0 +1,62 @@
+<!--Pedro Hurtado González
+
+This file is part of plhurtado/lassercut.
+
+plhurtado/lassercut is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+plhurtado/lassercut is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>. -->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <_name>Patron para doblar madera</_name>
+    <id>plhurtado.doblarMadera</id>
+    <param name="unidad" type="enum" default="mm" _gui-text="Unidad de medida:">
+        
+        <_item value="pt">pt</_item>
+        <_item value="cm">cm</_item>
+        <_item value="m">m</_item>
+        <_item value="in">in</_item>
+        <_item value="mm">mm</_item>
+        <_item value="pc">pc</_item>
+        <_item value="px">px</_item>
+        <_item value="ft">ft</_item>
+        
+    </param>
+    <param name="anchura" type="float" min="0.5" max="10000.0" _gui-text="Anchura">10</param>
+    <param name="altura" type="float" min="10.0" max="10000.0" _gui-text="Altura">100</param>
+    <param name="separacionHorizontal" type="float" min="0.1" max="100.0" _gui-text="Separacion horizontal entre las lineas">1.0</param>
+    <param name="separacionVertical" type="float" min="0.1" max="100" _gui-text="Separacion vertical entre lineas">3.0</param>
+    <param name="larguraMaxima" type="float" min="1.0" max="10000" _gui-text="Largura máxima de las líneas">30</param>
+    <param name="marcasInicio" type="boolean" _gui-text="Añadir al comienzo">false</param>
+    <param name="grupo" type="boolean" _gui-text="Agrupar las lineas">false</param>
+    <param name="path" type="enum" default="unico" _gui-text="Estructura de las lineas">
+                <_item value="unico">Un único path</_item>
+                <_item value="varios">Varios paths</_item>
+    </param>
+    <param name="caja" type="boolean" _gui-text="Caja contenedora">false</param>
+    <param name="sobrante" type="float" min = "0.0" max="100" _gui-text="Distancia sobrepasada">0.0</param>
+    <param name="orden" type="enum" default="igual" _gui-text="Orden en el dibujado de las líneas">
+                <_item value="igual">Siempre de arriba a abajo</_item>
+                <_item value="zigzag">ZigZag</_item>
+    
+    </param>
+
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu _name="TFG" />
+        </effects-menu>
+    </effect>
+    <script>
+        <command reldir="extensions" interpreter="python">doblarMadera.py</command>
+    </script>
+</inkscape-extension>
