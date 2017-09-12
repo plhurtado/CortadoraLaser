@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+
 <!--Pedro Hurtado González
 
 This file is part of plhurtado/lassercut.
@@ -15,12 +18,19 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>. -->
 
-<?xml version="1.0" encoding="UTF-8"?>
-<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <_name>Fuentes de una sola linea</_name>
     <id>plhurtado.singleLine</id>
     <dependency type="executable" location="extensions">inkex.py</dependency>
     <dependency type="executable" location="extensions">simplestyle.py</dependency>
+    <param name="tab" type="notebook">
+        <page name="help" _gui-text="Help">
+            <param name="helpOptions" type="description">Extensión encargada de eliminar los trazos innecesarios de los textos escritos con fuentes de una sola línea seleccionados.
+*Se aplicarán los cambios a los textos o letras que previamente hayan sido convertidos a path.
+*No necesita argumentos para su ejecución.
+            </param>
+        </page>
+    </param>
+    
     <effect>
         <object-type>all</object-type>
         <effects-menu>

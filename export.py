@@ -18,7 +18,7 @@
 #You should have received a copy of the GNU General Public License
 #along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>.
 
-import sys, inkex, subprocess, re
+import sys, inkex, subprocess, re, copy
 sys.path.append('/usr/share/inkscape/extensions')
    
 class export(inkex.Effect):
@@ -31,6 +31,7 @@ class export(inkex.Effect):
         self.OptionParser.add_option('--path', action = 'store', type = 'string', dest = 'path', default = '/tmp/', help = 'Ruta donde se guardarán los ficheros EPS')
         self.OptionParser.add_option('--opacity', action = 'store', type = 'inkbool', dest = 'opacity', help = 'Configurar todas las oacidades al máximo')
         self.OptionParser.add_option('--fill', action = 'store', type = 'inkbool', dest = 'fill', help = 'Borrar el relleno de todas las piezas')
+        self.OptionParser.add_option('--fillText', action = 'store', type = 'inkbool', dest = 'fillText', help = 'No eliminar el relleno de los textos')
         self.OptionParser.add_option('--text', action = 'store', type = 'inkbool', dest = 'text', help = 'Pasar los objetos de texto a path')
 
     def effect(self):
@@ -57,32 +58,61 @@ class export(inkex.Effect):
                     
                     #Si queremos poner al 100% la opacidad del borde
                     if self.options.opacity :
+                        pos = estilo.find('opacity:')
+                        if pos != -1 :
+                            if estilo[pos + 8] != "1" :
+                                final = estilo[:pos + 8] + "1"
+                                aux = estilo[pos:].find(";")
+                                if aux > pos :
+                                    final = final + estilo[aux:]
+                                estilo = final
                         pos = estilo.find('stroke-opacity:')
                         if pos != -1 :
                             if estilo[pos + 15] != "1" :
                                 final = estilo[:pos + 15] + "1"
-                                aux = estilo[pos:].rfind(";") + pos
+                                aux = estilo[pos:].find(";") + pos
                                 if aux > pos :
                                     final = final + estilo[aux:]
                                 estilo = final
                     #Si queremos eliminar el relleno de las figuras
                     if self.options.fill :
-                        pos = estilo.find('fill:')
-                        if pos != -1 :
-                            if estilo [pos + 5] != "n" :
-                                final = estilo[:pos + 5] + "none"
-                                aux = estilo[pos:].find(";") + pos
-                                if aux > pos : 
-                                    final = final + estilo[aux:]
-                                estilo = final
-                                #Se notificará al usuario en caso de que haya un texto al que quitarle el relleno
-                                if objeto.tag == inkex.addNS('text','svg'):
-                                    inkex.debug('Hay un elemento de texto al que se le quitará el relleno, si no tiene relleno se hará invisible')
+                        if objeto.tag == inkex.addNS('text','svg') and self.options.fillText :
+                            pass
+                        else :
+                            pos = estilo.find('fill:')
+                            if pos != -1 :
+                                if estilo [pos + 5] != "n" :
+                                    final = estilo[:pos + 5] + "none"
+                                    aux = estilo[pos:].find(";") + pos
+                                    if aux > pos : 
+                                        final = final + estilo[aux:]
+                                    estilo = final
                     objeto.set('style', estilo)
 
+        #stream = open('/tmp/hola.svg', 'r')
+        #inkex.debug(str(stream))
+        #inkex.debug('Original' + str(self.original_document))
+        #inkex.debug('Modificado' + str(self.document))
+        #p = etree.XMLParser(huge_tree=True)
+        #etree.parse(stream, parser=p)
+        
+        #parseado = self.parse('/tmp/hola2.svg')
+        #self.original_document = copy.deepcopy(self.document)
+        #stream.close()  
+        
+        parameters=["inkscape", "--without-gui", self.args[-1], "--verb=FileSave"]
+        
+        p = subprocess.Popen(parameters,stdout=subprocess.PIPE,stdin=subprocess.PIPE,stderr=subprocess.PIPE)
+        (stdoutdata, stderrdata) = p.communicate()
+        p.stdout.close()
+        p.stdin.close()
+        p.stderr.close()
+        
+        
+        
         #Ruta absoluta del archivo svg
         svg_file_path = self.args[-1]
-
+        
         for objeto in svg.iter():
             #En caso de que tengamos una capa
             if objeto.tag == inkex.addNS('g','svg') and objeto.get(inkex.addNS('groupmode', 'inkscape')) == 'layer':  
@@ -117,6 +147,8 @@ class export(inkex.Effect):
                 p.stdout.close()
                 p.stdin.close()
                 p.stderr.close()
+
         
 effect = export()
 effect.affect() 
+

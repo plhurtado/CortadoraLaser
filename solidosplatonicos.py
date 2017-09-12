@@ -228,8 +228,10 @@ def creadorSolidoTriangulo (longitud, grosor, anchoPestana, numPestana, isCalado
 
     return lista
     
-def creadorSolidoCuadrado (longitud, grosor, anchoPestana, numPestana, isCalado, distanciaCalado, distribucion, separacion):
+def creadorSolidoCuadrado (longitud, grosor, anchoPestana, numPestana, isCalado, distanciaCalado, distribucion):
     
+    #Se establece como invariable la distancia de separación entre las piezas
+    separacion = 30;          
     lista = []
     
     x = 0
@@ -330,9 +332,6 @@ class solidosplatonicos(inkex.Effect):
         self.OptionParser.add_option("--numPestana",
             action="store", type="float",
             dest="numPestana", help="Posicion de las pestañas")
-        self.OptionParser.add_option("--separacion", 
-            action="store", type="float",
-            dest="separacion", help ="Separación entre las piezas en el tablero")
         self.OptionParser.add_option("--isCalado",
             action="store", type="inkbool",
             dest="isCalado", default="false")
@@ -372,7 +371,6 @@ class solidosplatonicos(inkex.Effect):
         anchoPestana=self.unittouu(str(self.options.pestana) + unidad)
         grosor=self.unittouu(str(self.options.grosor) + unidad)
         numPestana=self.unittouu(str(self.options.numPestana))
-        separacion=self.unittouu(str(self.options.separacion) + unidad)
         isCalado=self.options.isCalado
         distribucion=self.options.distribucion
         distanciaCalado=self.unittouu(str(self.options.distanciaCalado) + unidad)
@@ -408,7 +406,7 @@ class solidosplatonicos(inkex.Effect):
             if unico == 1 :
                 puntos.append(creadorCuadrado(0, 0, longitud, grosor, anchoPestana, numPestana, isCalado, distanciaCalado))
             else :
-                puntos = creadorSolidoCuadrado(longitud, grosor, anchoPestana, numPestana, isCalado, distanciaCalado, distribucion, separacion)
+                puntos = creadorSolidoCuadrado(longitud, grosor, anchoPestana, numPestana, isCalado, distanciaCalado, distribucion)
             
         elif figura == "Tetraedro" or figura == "Octaedro" or figura == "Icosaedro":
             

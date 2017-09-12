@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+
 <!--Pedro Hurtado González
 
 This file is part of plhurtado/lassercut.
@@ -15,8 +18,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>. -->
 
-<?xml version="1.0" encoding="UTF-8"?>
-<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <_name>Sólidos platónicos</_name>
     <id>plhurtado.solidosplatonicos</id>
     <dependency type="executable" location="extensions">solidosplatonicos.py</dependency>
@@ -45,7 +46,6 @@ along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>. -->
             <param name="pestana" type="float" min="0.1" max="1000" _gui-text="Anchura de las pestañas">1</param>
             <param name="grosor" type="float" min="0.1" max="1000" _gui-text="Grosor del material">1</param>
             <param name="numPestana" type="int" min="0" max="3" _gui-text="Numero de pestañas por lado">2</param>
-            <param name="separacion" type="float" min="1" max="500" _gui-text="Separación entre las piezas">5.0</param>
             <param name="unico" type="boolean" _gui-text="Una única pieza">0</param>
             <param name="distribucion" type="enum" value="rectangular" _gui-text="Distribución de las figuras">
                 <_item value="lineal">Lineal</_item>
@@ -57,26 +57,29 @@ along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>. -->
          </page>
          <page name="style" _gui-text="Style">
 
-            <param name="s_r" type="int" min="0" max="255" _gui-text="Color de borde, Red:">255</param>
-            <param name="s_g" type="int" min="0" max="255" _gui-text="Color de borde, Green:">0</param>
-            <param name="s_b" type="int" min="0" max="255" _gui-text="Color de borde, Blue:">0</param>
+            <param name="s_r" type="int" min="0" max="255" _gui-text="Color de borde, Rojo:">255</param>
+            <param name="s_g" type="int" min="0" max="255" _gui-text="Color de borde, Verde:">0</param>
+            <param name="s_b" type="int" min="0" max="255" _gui-text="Color de borde, Azul:">0</param>
             <param name="th" type="float" min="0.1" max="100" _gui-text="Grosor del trazo:">4</param>
         </page>
         <page name="help" _gui-text="Help">
             <param name="helpOptions" type="description">Extensión encargada de generar sólidos platónicos.
-Los parámetros que podemos modificar son:
+Los parámetros que podemos modificar en la pestaña Opciones son:
 -Unidad de medida: Unidad en la que se van a dar las medidas
 -Figura: Sólido platónico que se va a generar
 -Longitud: Tamaño de cada uno de los lados del sólido
 -Anchura de las pestañas: Distancia que medirán todas las pestañas
 -Grosor del material: Indicará como de largas serán las pestañas
 -Numero de pestañas por lado: Podemos escoger desde 0 pestañas por lado hasta 3
--Separación entre las piezas: Separación entre las piezas generadas
 -Una única pieza: Generará una única pieza del sólido indicado
 -Distribución de las figuras: Posición de las piezas en el tablero. Podrá ser lineal o rectangular
 -Piezas caladas: Se generarán piezas "huecas"
 -Anchura de la pared interna: Distancia entre un lado y el corte del calado interno
 -Grupo contenedor del sólido: Se generará un grupo de donde colgarán las piezas generadas
+
+Los parámetros que podemos modificar en la pestaña Estilo son:
+-Color en formato RGB
+-Grosor del trazo
             </param>
         </page>
     </param>

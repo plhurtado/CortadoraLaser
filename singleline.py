@@ -42,6 +42,9 @@ class singleLine(inkex.Effect):
 
     def __init__(self):
         inkex.Effect.__init__(self)
+        self.OptionParser.add_option("--tab",
+            action="store", type="string",
+            dest="tab")
 
     def effect(self):
         seleccionados = self.selected

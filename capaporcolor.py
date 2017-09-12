@@ -27,6 +27,9 @@ class capaporcolor(inkex.Effect):
 
         # Call the base class constructor.
         inkex.Effect.__init__(self)
+        self.OptionParser.add_option("--tab",
+            action="store", type="string",
+            dest="tab")
 
     #Funcion que devuelva el color a partir de un estilo (el borde)
     @staticmethod

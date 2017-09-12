@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+
 <!--Pedro Hurtado González
 
 This file is part of plhurtado/lassercut.
@@ -15,39 +18,57 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>. -->
 
-<?xml version="1.0" encoding="UTF-8"?>
-<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <_name>Patron para doblar madera</_name>
     <id>plhurtado.doblarMadera</id>
-    <param name="unidad" type="enum" default="mm" _gui-text="Unidad de medida:">
-        
-        <_item value="pt">pt</_item>
-        <_item value="cm">cm</_item>
-        <_item value="m">m</_item>
-        <_item value="in">in</_item>
-        <_item value="mm">mm</_item>
-        <_item value="pc">pc</_item>
-        <_item value="px">px</_item>
-        <_item value="ft">ft</_item>
-        
-    </param>
-    <param name="anchura" type="float" min="0.5" max="10000.0" _gui-text="Anchura">10</param>
-    <param name="altura" type="float" min="10.0" max="10000.0" _gui-text="Altura">100</param>
-    <param name="separacionHorizontal" type="float" min="0.1" max="100.0" _gui-text="Separacion horizontal entre las lineas">1.0</param>
-    <param name="separacionVertical" type="float" min="0.1" max="100" _gui-text="Separacion vertical entre lineas">3.0</param>
-    <param name="larguraMaxima" type="float" min="1.0" max="10000" _gui-text="Largura máxima de las líneas">30</param>
-    <param name="marcasInicio" type="boolean" _gui-text="Añadir al comienzo">false</param>
-    <param name="grupo" type="boolean" _gui-text="Agrupar las lineas">false</param>
-    <param name="path" type="enum" default="unico" _gui-text="Estructura de las lineas">
-                <_item value="unico">Un único path</_item>
-                <_item value="varios">Varios paths</_item>
-    </param>
-    <param name="caja" type="boolean" _gui-text="Caja contenedora">false</param>
-    <param name="sobrante" type="float" min = "0.0" max="100" _gui-text="Distancia sobrepasada">0.0</param>
-    <param name="orden" type="enum" default="igual" _gui-text="Orden en el dibujado de las líneas">
-                <_item value="igual">Siempre de arriba a abajo</_item>
-                <_item value="zigzag">ZigZag</_item>
-    
+    <param name="tab" type="notebook">
+        <page name="options" _gui-text="Options">
+            <param name="unidad" type="enum" default="mm" _gui-text="Unidad de medida:">
+                
+                <_item value="pt">pt</_item>
+                <_item value="cm">cm</_item>
+                <_item value="m">m</_item>
+                <_item value="in">in</_item>
+                <_item value="mm">mm</_item>
+                <_item value="pc">pc</_item>
+                <_item value="px">px</_item>
+                <_item value="ft">ft</_item>
+                
+            </param>
+            <param name="anchura" type="float" min="0.5" max="10000.0" _gui-text="Anchura">10</param>
+            <param name="altura" type="float" min="10.0" max="10000.0" _gui-text="Altura">100</param>
+            <param name="separacionHorizontal" type="float" min="0.1" max="100.0" _gui-text="Separacion horizontal entre lineas">1.0</param>
+            <param name="separacionVertical" type="float" min="0.1" max="100" _gui-text="Separacion vertical entre lineas">3.0</param>
+            <param name="larguraMaxima" type="float" min="1.0" max="10000" _gui-text="Largura máxima de las líneas">30</param>
+            <param name="marcasInicio" type="boolean" _gui-text="Marcas iniciales">false</param>
+            <param name="grupo" type="boolean" _gui-text="Agrupar las lineas">false</param>
+            <param name="path" type="enum" default="unico" _gui-text="Estructura de las lineas">
+                        <_item value="unico">Un único path</_item>
+                        <_item value="varios">Varios paths</_item>
+            </param>
+            <param name="caja" type="boolean" _gui-text="Caja contenedora">false</param>
+            <param name="sobrante" type="float" min = "0.0" max="100" _gui-text="Distancia sobrepasada">0.0</param>
+            <param name="orden" type="enum" default="igual" _gui-text="Orden en el dibujado de las líneas">
+                        <_item value="igual">Siempre de arriba a abajo</_item>
+                        <_item value="zigzag">ZigZag</_item>
+            </param>
+        </page>
+        <page name="help" _gui-text="Help">
+            <param name="helpOptions" type="description">Generador del patrón necesario para poder doblar o curvar planchas de madera.
+Sus atribustos son:
+-Unidad de medida: Unidad de medida en la que se van a dar las longitudes y valores.
+-Anchura: Anchura total del patron.
+-Altura: Altura total del patron.
+-Separacion horizontal entre lineas: Separación que habrá entre las columnas de líneas.
+-Separacion vertical entre lineas: Separación entre las líneas verticales.
+-Largura máxima de las lineas: Largura máxima que podrán tomar las líneas que se dibujan.
+-Marcas iniciales: Marcas que se añaden al principio de cada columan fuera de la altura del patrón.
+-Agrupar lineas: Todas las líneas dibujadas se agruparán en un único paquete.
+-Estuctura de las líneas: Se podrá configurar que todas las líneas se almacenen en un único path o que se cree un path para cada una de ellas.
+-Caja contenedora: Se dibujará una caja de color rojo con las medidas del patron. Anchura x altura.
+-Distancia sobrepasada: Distancia que las lineas pares o impares sobre pasarán los límites de la altura. Esto se hace para asegurar que se realiza el corte hasta el borde.
+-Orden de dibujado: Se podrá seleccionar si las lineas se quieren dibujar siempre de arriba a abajo o si por el contrario se quiere dibujar en zigzag. Esto podría optimizar el tiempo de cortado.
+            </param>
+        </page>
     </param>
 
     <effect>

@@ -19,6 +19,9 @@ v0.93 - 15/8/2016 by Paul Hutchison:
  
 v0.94 - 05/01/2017 by Paul Hutchison:
  - Added option for keying dividers into walls/floor/none
+ 
+V0.95 - 01/05/2017 by Pedro Hurtado:
+ - Added option for create all the sades of a shape in one path
    
 This program is ugly software: you can clean it up yourself and/or mock it 
 under the unpublished terms of common civility.

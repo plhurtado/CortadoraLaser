@@ -38,7 +38,6 @@ def draw_SVG_line( x1, y1, largura, altura, especial, sobrante, inverso):
             return ""
     else :
         if y1 > altura :
-            inkex.debug('hola')
             return ""
         if y1 + largura - altura < sobrante :
             y2 = y1 + largura
@@ -67,7 +66,8 @@ class doblarMadera(inkex.Effect):
     
     def __init__(self):
         inkex.Effect.__init__(self)
-        self.OptionParser.add_option( '--unidad', action='store', type='string', dest='unidad', default='mm', help='Unit')
+        self.OptionParser.add_option('--tab', action='store', type='string', dest='unidad')
+        self.OptionParser.add_option('--unidad', action='store', type='string', dest='unidad', default='mm', help='Unit')
         self.OptionParser.add_option('--anchura', action='store', type='float', dest='anchura', help='Anchura del lineado')
         self.OptionParser.add_option('--altura', action='store', type='float', dest='altura', help='Height')
         self.OptionParser.add_option('--separacionHorizontal', action='store', type='float', dest='separacionHorizontal', help='Separacion horizontal entre lineas')

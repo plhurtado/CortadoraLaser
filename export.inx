@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+
 <!--Pedro Hurtado González
 
 This file is part of plhurtado/lassercut.
@@ -15,8 +18,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>. -->
 
-<?xml version="1.0" encoding="UTF-8"?>
-<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <_name>Exportar clases a eps</_name>
     <id>plhurtado.export</id>
     <dependency type="executable" location="extensions">inkex.py</dependency>
@@ -27,8 +28,20 @@ along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>. -->
             <param name="path" type="string" _gui-text="Ruta donde se crearán los fichero EPS: ">/tmp/</param>
             <param name="opacity" type="boolean" _gui-text="Configurar todas las opacidades de los bordes a 100%">0</param>
             <param name="fill" type="boolean" _gui-text="Eliminar el relleno de las piezas">0</param>
+            <param name="fillText" type="boolean" _gui-text="No eliminar el relleno del texto">0</param>
             <param name="text" type="boolean"  _gui-text="Convertir los elementos de texto a paths">0</param>
         </page>
+        <page name="help" _gui-text="Help">
+            <param name="helpOptions" type="description">Extensión encargada de exportar las capas del proyecto a diferentes archivos .EPS
+Sus tres parámetros son_
+-Ruta: Directorio donde se quieren generar los archivos.
+-Configurar todas las opacidades de los bordes a 100%: Convertirá todos los bordes de las figuras opacos.
+-Eliminar relleno de las piezas: Convertirá el interior de las piezas en transparente ya que puede fallar la cortadora laser si no se hace.
+-Convertir los elementos de texto a paths: Los elementos de texto se convertirán a path en los archivos EPS finales.
+-No quitar relleno textos: Si se marca esta opción y la anterior no se le eliminará el relleno a los elementos de texto.
+            </param>
+        </page>
+        
     </param>
     
     <effect>

@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+
 <!--Pedro Hurtado González
 
 This file is part of plhurtado/lassercut.
@@ -15,16 +18,23 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>. -->
 
-<?xml version="1.0" encoding="UTF-8"?>
-<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
   <_name>Color por capa </_name>
   <id>plhurtado.colorporcapa</id>
   <dependency type="executable" location="extensions">colorporcapa.py</dependency>
   <dependency type="executable" location="extensions">inkex.py</dependency>
   
+  
   <param name="tab" type="notebook">
     <page name="options" _gui-text="Options">
         <param name="removeLayers" type="boolean" _gui-text="Eliminar capas">0</param>
+    </page>
+    
+    <page name="help" _gui-text="Help">
+            <param name="helpOptions" type="description">Extensión encargada de aplicar el mismo color de borde a todos los objetos de una capa y colores diferentes entre capas.
+En caso de marcar la casilla "Eliminar capas" se borrarán todas las capas tras aplicarle el color, dejando todos los objetos como hijos en una única capa.
+*No se repetirán colores.
+*En caso de no borrar las capas se actualizarán sus nombres añadiendo el color aplicado a cada una de ellas.
+            </param>
     </page>
   </param>
   

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-
+    
 <!--Pedro Hurtado González
 
 This file is part of plhurtado/lassercut.
@@ -17,20 +17,25 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>. -->
-
-
-  <_name>Capas por colores</_name>
-  <id>plhurtado.capaporcolor</id>
-  <dependency type="executable" location="extensions">capaporcolor.py</dependency>
+    
+  <_name>Crear caja</_name>
+  <id>plhurtado.crearCaja</id>
+  <dependency type="executable" location="extensions">crearCaja.py</dependency>
   <dependency type="executable" location="extensions">inkex.py</dependency>
-  <dependency type="executable" location="extensions">simplestyle.py</dependency>
   <param name="tab" type="notebook">
+    <page name="options" _gui-text="Options">
+        <param name="x" type="int" default="0" _gui-text="Coordenada x del punto de comienzo: ">0</param>
+        <param name="y" type="int" default="0" _gui-text="Coordenada y del punto de comienzo: ">0</param>
+        <param name="longitud" type="float" default="20" min="1" max="500" _gui-text="Longitud de los lados: ">20</param>
+    </page>
     <page name="help" _gui-text="Help">
-            <param name="helpOptions" type="description">Esta extensión creará una capa por cada uno de los colores que aparezcan en los bordes de las figuras del proyecto. 
-*No permitirá que haya capas repetidas.
-*No necesita argumentos para su ejecución.
-            </param>
-        </page>
+        <param name="helpOptions" type="description">
+            Esta extensión creará una caja a partir de:
+-X: Valor x para la coordenada de comience.
+-Y: Valor y para la coordenada de comience.
+-Longitud: Longitud que tendrá cada uno de los lados de la caja.
+        </param>
+    </page>
   </param>
   <effect>
     <object-type>all</object-type>
@@ -39,6 +44,6 @@ along with plhurtado/lassercut.  If not, see <http://www.gnu.org/licenses/>. -->
     </effects-menu>
   </effect>
   <script>
-    <command reldir="extensions" interpreter="python">capaporcolor.py</command>
+    <command reldir="extensions" interpreter="python">crearCaja.py</command>
   </script>
 </inkscape-extension>
